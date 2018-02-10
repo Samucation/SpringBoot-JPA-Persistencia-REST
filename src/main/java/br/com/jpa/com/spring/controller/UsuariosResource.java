@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,14 +65,14 @@ public class UsuariosResource {
 				pagina, porPagina, new Sort(direcao, ordenacao)));
 	}
 	
-//	@PostMapping
-//	public Usuario salvar(@RequestBody Usuario usuario) {
-//		return usuarios.save(usuario);
-//	}
-//	
-//	@DeleteMapping("/{id}")
-//	public void deletar(@PathVariable Long id) {
-//		usuarios.delete(id);
-//	}
+	@PostMapping
+	public Usuario salvar(@RequestBody Usuario usuario) {
+		return usuarios.save(usuario);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deletar(@PathVariable Long id) {
+		usuarios.delete(id);
+	}
 	
 }

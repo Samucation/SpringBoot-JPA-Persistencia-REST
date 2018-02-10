@@ -16,12 +16,12 @@ import br.com.jpa.com.spring.model.Usuario;
 
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("usuarios")
 public class UsuariosResource {
 	
-	@RequestMapping("/pessoa")
+	@RequestMapping("buscar-pessoa-estatica")
 	public String pessoa() {
-		return "bla";
+		return "Pessoa estatica dados";
 	}
 	
 	@Autowired

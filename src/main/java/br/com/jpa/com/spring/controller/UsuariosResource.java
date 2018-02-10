@@ -2,6 +2,7 @@ package br.com.jpa.com.spring.controller;
 
 import java.util.List;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import br.com.jpa.com.spring.model.Usuario;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuariosResource {
-
+	
 	@Autowired
 	private Usuarios usuarios; //Repositório dos usuários.
 	

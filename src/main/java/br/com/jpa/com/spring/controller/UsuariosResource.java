@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,27 +31,27 @@ public class UsuariosResource {
 	@Autowired
 	private Usuarios usuarios;
 	
-	@RequestMapping("/pesquisarUsuarios")
+	@RequestMapping("pesquisar-usuarios")
 	public List<Usuario> pesquisarusuarios(@RequestParam String nomeCompleto) {
 		return usuarios.pesquisarUsuarios(nomeCompleto);
 	}
 	
-	@RequestMapping("/por-nomeCompleto")
-	public Usuario porNome(@RequestParam String nomeCompleto) {
+	@RequestMapping("por-nome-completo")
+	public Usuario porNome(@RequestHeader String nomeCompleto) {
 		return usuarios.findByNomeCompleto(nomeCompleto);
 	}
 	
-	@RequestMapping("/por-nomeCompleto-comecando-com")
-	public List<Usuario> porNomeComecandoCom(@RequestParam String nomeCompleto) {
-		return usuarios.findByNomeCompletoStartingWithIgnoreCase(nomeCompleto);
+	@RequestMapping("por-nome-comecando-com")
+	public List<Usuario> porNomeComecandoCom(@RequestHeader String inicioDoNome) {
+		return usuarios.findByNomeCompletoStartingWithIgnoreCase(inicioDoNome);
 	}
 	
-	@RequestMapping("/sem-endereco")
+	@RequestMapping("sem-endereco")
 	public List<Usuario> semEndereco() {
 		return usuarios.findByEnderecoIsNull();
 	}
 	
-	@RequestMapping("/{id}")
+	@RequestMapping("{id}")
 	public Usuario buscar(@PathVariable Long id) {
 		return usuarios.findOne(id);
 	}
@@ -70,7 +71,7 @@ public class UsuariosResource {
 		return usuarios.save(usuario);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("{id}")
 	public void deletar(@PathVariable Long id) {
 		usuarios.delete(id);
 	}

@@ -1,5 +1,7 @@
 package br.com.jpa.com.spring.controller;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +69,9 @@ public class UsuariosResource {
 	}
 	
 	@PostMapping
-	public Usuario salvar(@RequestBody Usuario usuario) {
+	public Usuario salvar(@RequestBody Usuario usuario, @RequestHeader boolean autoCurrentDate) {
+		if(usuario.getDataDoCadastro() == null && autoCurrentDate)
+			usuario.setDataDoCadastro(new Date(Calendar.getInstance().getTime().getTime()));
 		return usuarios.save(usuario);
 	}
 	
